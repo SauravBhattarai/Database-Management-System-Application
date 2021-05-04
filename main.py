@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter.ttk import *
 import mysql.connector
 from datetime import datetime
+from password import password
 
 global count
 global row_id
@@ -38,7 +39,7 @@ def show_values():
     tree_view.delete(*tree_view.get_children())
 
     # Establishing a connection to the database
-    database = mysql.connector.connect(host="127.0.0.1", user="root", password="managedatabase",
+    database = mysql.connector.connect(host="127.0.0.1", user="root", password=password,
                                        database="restaurant_db")
 
     # Creating a cursor instance
@@ -66,7 +67,7 @@ def show_values():
 
 def submit(amount):
     # Establishing a connection to the database
-    database = mysql.connector.connect(host="127.0.0.1", user="root", password="managedatabase",
+    database = mysql.connector.connect(host="127.0.0.1", user="root", password=password,
                                        database="restaurant_db")
 
     # Creating a cursor instance
@@ -137,7 +138,7 @@ def select_row():
 # function to update database and treeview
 def update_record():
     # Establishing a connection to the database
-    database = mysql.connector.connect(host="127.0.0.1", user="root", password="managedatabase",
+    database = mysql.connector.connect(host="127.0.0.1", user="root", password=password,
                                        database="restaurant_db")
 
     # Creating a cursor instance
@@ -265,11 +266,7 @@ tree_view.heading("date_of_purchase", text="Date of transaction", anchor=W)
 # Adding logic to the program
 show_values()
 
-# selected = tree_view.selection()
-# if len(selected) == 0:
-#     update_button.config(state="normal")
-
-
+# Waiting for click event on the treeview
 tree_view.bind("<Button-1>", enable_button)
 
 
